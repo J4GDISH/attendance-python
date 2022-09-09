@@ -2,7 +2,7 @@ import os
 from pymongo import MongoClient
 
 
-DB_URL = 'mongodb+srv://RDNATIONAL:rdnc@rdnc.p8phn.mongodb.net/test'
+DB_URL = 'mongodb+srv://J4DGISH:J4gubhai@cluster0.ztfkzyi.mongodb.net/test'
 
 JWT_SECRET_KEY = "aGVsbG93b3JsZA=="
 
