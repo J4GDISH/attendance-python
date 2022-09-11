@@ -59,7 +59,7 @@ def profiles():
 def log():
     data = json.loads(request.data)
     id = str(data['id']).strip()
-    return attendance_bo.log_attendance(id=id)
+    return jsonify(attendance_bo.log_attendance(id=id))
 
 @users_blueprint.route('/student_log/', methods=['POST'])
 def get_log():
