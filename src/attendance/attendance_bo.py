@@ -23,9 +23,9 @@ class AttendanceBO:
         today = datetime.today()
         if attendance is None or (attendance['created_at']).strftime('%Y-%m-%d') != today.strftime('%Y-%m-%d'):
             self.attendance_repository.create(document=document)
-            return '%s Successful' % user['roll_no']
+            return True
         else:
-            return '%s has been already marked' % user['roll_no']
+            return False
 
     def fliter_class(self, name, date):
         date_obj = datetime.strptime(date, '%Y-%m-%d')
