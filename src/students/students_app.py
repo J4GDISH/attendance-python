@@ -26,12 +26,25 @@ def login():
     user = users_bo.login(email, password)
     return json_util.dumps(user)
 
-@users_blueprint.route('/register', methods=['POST'])
+@users_blueprint.route('/student_register', methods=['POST'])
 def register():
     data = json.loads(request.data)
     first_name = str(data['firstName']).strip()
     last_name = str(data['lastName']).strip()
-    role = str(data['role']).strip()
+    role = 'Student'
+    roll_no = str(data['rollNo']).strip()
+    class_name = str(data['className']).strip()
+    email = str(data['email']).strip().lower()
+    password = str(data['password']).strip()
+    token = users_bo.register(email=email, password=password, first_name=first_name, last_name=last_name, role=role, roll_no=roll_no, class_name=class_name)
+    return json_util.dumps(token)
+
+@users_blueprint.route('/teacher_register', methods=['POST'])
+def teacher_register():
+    data = json.loads(request.data)
+    first_name = str(data['firstName']).strip()
+    last_name = str(data['lastName']).strip()
+    role = 'Teacher'
     roll_no = str(data['rollNo']).strip()
     class_name = str(data['className']).strip()
     email = str(data['email']).strip().lower()
@@ -44,8 +57,13 @@ def profile(id):
     profile = users_bo.profile(id)
     return json_util.dumps(profile)
 
-@users_blueprint.route('/profiles/', methods=['GET'])
-def profiles():
+@users_blueprint.route('/student_profiles/', methods=['GET'])
+def student_profiles():
+    profile = users_bo.profiles()
+    return json_util.dumps(profile)
+
+@users_blueprint.route('/teacher_profiles/', methods=['GET'])
+def teacher_profiles():
     profile = users_bo.profiles()
     return json_util.dumps(profile)
 
