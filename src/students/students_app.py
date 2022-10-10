@@ -40,20 +40,19 @@ def register():
     return json_util.dumps(token)
 
 @users_blueprint.route('/profile/<id>/', methods=['GET'])
-# @auth.login_required
 def profile(id):
-    # user = auth.current_user()
-    # id = '62e6c771c58ad4f71827b8d3'
     profile = users_bo.profile(id)
     return json_util.dumps(profile)
 
 @users_blueprint.route('/profiles/', methods=['GET'])
-# @auth.login_required
 def profiles():
-    # user = auth.current_user()
-    # id = '62e6c771c58ad4f71827b8d3'
     profile = users_bo.profiles()
     return json_util.dumps(profile)
+
+@users_blueprint.route('/course/', methods=['GET'])
+def courses():
+    courses = classroom_bo.courses()
+    return json_util.dumps(courses)
 
 @users_blueprint.route('/log', methods=['POST'])
 def log():

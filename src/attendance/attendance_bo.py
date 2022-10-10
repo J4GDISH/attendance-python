@@ -19,7 +19,7 @@ class AttendanceBO:
             'email': user['email'],
             'roll_no': user['roll_no']
         }
-        attendance = self.attendance_repository.read(document={'_id': bson.ObjectId(id)})
+        attendance = self.attendance_repository.read(document={'user_id': id})
         today = datetime.today()
         if attendance is None or (attendance['created_at']).strftime('%Y-%m-%d') != today.strftime('%Y-%m-%d'):
             self.attendance_repository.create(document=document)
